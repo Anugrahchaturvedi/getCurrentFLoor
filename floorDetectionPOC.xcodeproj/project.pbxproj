@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6112A6751F26F4266691BC09 /* Pods_floorDetectionPOC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 158E383536ABAA538F35D390 /* Pods_floorDetectionPOC.framework */; };
+		7C4388792C0DBDEB005629AB /* VC3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4388782C0DBDEB005629AB /* VC3.swift */; };
 		CE87DC492C09A90300F17670 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE87DC482C09A90300F17670 /* AppDelegate.swift */; };
 		CE87DC4B2C09A90300F17670 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE87DC4A2C09A90300F17670 /* SceneDelegate.swift */; };
 		CE87DC4D2C09A90300F17670 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE87DC4C2C09A90300F17670 /* ViewController.swift */; };
@@ -21,6 +22,7 @@
 /* Begin PBXFileReference section */
 		158E383536ABAA538F35D390 /* Pods_floorDetectionPOC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_floorDetectionPOC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A9736A425642C156ED9C4CE /* Pods-floorDetectionPOC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-floorDetectionPOC.debug.xcconfig"; path = "Target Support Files/Pods-floorDetectionPOC/Pods-floorDetectionPOC.debug.xcconfig"; sourceTree = "<group>"; };
+		7C4388782C0DBDEB005629AB /* VC3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VC3.swift; sourceTree = "<group>"; };
 		CE87DC452C09A90300F17670 /* floorDetectionPOC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = floorDetectionPOC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE87DC482C09A90300F17670 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE87DC4A2C09A90300F17670 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -76,6 +78,7 @@
 				CE87DC532C09A90800F17670 /* LaunchScreen.storyboard */,
 				CE87DC562C09A90800F17670 /* Info.plist */,
 				CE982CAB2C0D887600FB9EAB /* VC2.swift */,
+				7C4388782C0DBDEB005629AB /* VC3.swift */,
 			);
 			path = floorDetectionPOC;
 			sourceTree = "<group>";
@@ -212,6 +215,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C4388792C0DBDEB005629AB /* VC3.swift in Sources */,
 				CE87DC4D2C09A90300F17670 /* ViewController.swift in Sources */,
 				CE87DC5D2C09C10500F17670 /* AlitimeterManager.swift in Sources */,
 				CE982CAC2C0D887600FB9EAB /* VC2.swift in Sources */,
@@ -364,6 +368,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3422PK2C7W;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = floorDetectionPOC/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -395,6 +400,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3422PK2C7W;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = floorDetectionPOC/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

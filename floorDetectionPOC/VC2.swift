@@ -13,42 +13,54 @@ class VC2: UIViewController, CLLocationManagerDelegate {
     var currentLatitude: CLLocationDegrees?
     var currentLongitude: CLLocationDegrees?
     var currentAltitude: CLLocationDistance?
+    var altitudeReadings: [CLLocationDistance] = []
 
     @IBOutlet weak var currentAlt: UILabel!
     @IBOutlet weak var currentFloor: UILabel!
-    @IBOutlet weak var bsaeAlti: UILabel!
+    @IBOutlet weak var baseAlti: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         locationManager = CLLocationManager()
         locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest // Increase accuracy
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if let location = locations.first {
+        if let location = locations.first, location.verticalAccuracy >= 0 {
             currentLatitude = location.coordinate.latitude
             currentLongitude = location.coordinate.longitude
             currentAltitude = location.altitude
+
+            // Collect multiple altitude readings
+            altitudeReadings.append(currentAltitude!)
+            if altitudeReadings.count > 5 { // Average over the last 5 readings
+                altitudeReadings.removeFirst()
+            }
+
+            let averageAltitude = altitudeReadings.reduce(0, +) / Double(altitudeReadings.count)
+
             print("Current Location: \(currentLatitude!), \(currentLongitude!)")
             print("Current Altitude: \(currentAltitude!) meters")
+            print("Average Altitude: \(averageAltitude) meters")
 
             DispatchQueue.main.async {
-                self.currentAlt?.text = "Current Altitude: \(self.currentAltitude!) meters"
+                self.currentAlt?.text = "Current Altitude: \(averageAltitude) meters"
             }
 
             // After obtaining the current altitude, get the base altitude
             if let latitude = currentLatitude, let longitude = currentLongitude {
                 getBaseAltitude(latitude: latitude, longitude: longitude) { [weak self] baseAltitude in
                     guard let self = self else { return }
-                    if let baseAltitude = baseAltitude, let currentAltitude = self.currentAltitude {
+                    if let baseAltitude = baseAltitude {
                         print("Base Altitude: \(baseAltitude) meters")
 
                         DispatchQueue.main.async {
-                            self.bsaeAlti?.text = "Base Altitude: \(baseAltitude) meters"
-                            self.calculateCurrentFloor(currentAltitude: currentAltitude, baseAltitude: baseAltitude)
+                            self.baseAlti?.text = "Base Altitude: \(baseAltitude) meters"
+                            self.calculateCurrentFloor(currentAltitude: averageAltitude, baseAltitude: baseAltitude)
                         }
                     }
                 }
@@ -103,8 +115,13 @@ class VC2: UIViewController, CLLocationManagerDelegate {
         let currentFloor = altitudeDifference / floorHeight
         
         DispatchQueue.main.async {
-            self.currentFloor?.text = "Estimated Current Floor: \(Int(currentFloor))"
-            print("Estimated Current Floor: \(Int(currentFloor))")
+            if altitudeDifference < 0 {
+                self.currentFloor?.text = "Current Floor: Below Ground"
+                print("Current Floor: Below Ground")
+            } else {
+                self.currentFloor?.text = "Estimated Current Floor: \(Int(currentFloor))"
+                print("Estimated Current Floor: \(Int(currentFloor))")
+            }
         }
     }
 }
